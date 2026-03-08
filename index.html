@@ -69,27 +69,30 @@
   <script src="https://cdn.tailwindcss.com"></script>
 
   <!-- Tailwind config -->
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            brand: {
-              dark: "rgb(var(--brand-dark) / <alpha-value>)",
-              gold: "rgb(var(--brand-gold) / <alpha-value>)",
-              soft: "rgb(var(--brand-soft) / <alpha-value>)",
-              paper: "rgb(var(--brand-paper) / <alpha-value>)",
-              ink: "rgb(var(--brand-ink) / <alpha-value>)",
-            }
-          },
-          boxShadow: {
-            soft: "0 18px 45px rgba(44,26,18,.10)",
-            ring: "0 0 0 4px rgba(200,155,60,.20)"
+ <script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          brand: {
+            dark: "rgb(var(--brand-dark) / <alpha-value>)",
+            deep: "rgb(var(--brand-deep) / <alpha-value>)",
+            gold: "rgb(var(--brand-gold) / <alpha-value>)",
+            soft: "rgb(var(--brand-soft) / <alpha-value>)",
+            paper: "rgb(var(--brand-paper) / <alpha-value>)",
+            ink: "rgb(var(--brand-ink) / <alpha-value>)",
+            gray: "rgb(var(--brand-gray) / <alpha-value>)",
+            white: "rgb(var(--brand-white) / <alpha-value>)"
           }
+        },
+        boxShadow: {
+          soft: "0 18px 45px rgba(15,39,66,.10)",
+          ring: "0 0 0 4px rgba(201,162,39,.18)"
         }
       }
     }
-  </script>
+  }
+</script>
 
   <!-- Lucide -->
   <script src="https://unpkg.com/lucide@latest"></script>
@@ -354,7 +357,7 @@
           </div>
 
           <div class="mt-8 img-soft">
-            <img class="h-72 w-full object-cover" src="images/Team support and guidance.png" alt="Team support and guidance">
+            <img class="h-72 w-full object-cover" src="images/companytable.png" alt="Team support and guidance">
           </div>
         </div>
 
