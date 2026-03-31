@@ -177,7 +177,7 @@
           behavior: 'smooth'
         });
 
-        // Pre-fill the position dropdown
+
         setTimeout(() => {
           const positionSelect = document.getElementById('position');
           for (let i = 0; i < positionSelect.options.length; i++) {
@@ -203,4 +203,3 @@
         }
       });
     });
- 
