@@ -1,205 +1,271 @@
+import {
+  initializeApp,
+  getApps,
+} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import {
+  getFirestore,
+  collection,
+  addDoc,
+  serverTimestamp,
+} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
-    // Preloader
-    window.addEventListener('load', function () {
-      const preloader = document.getElementById('preloader');
-      preloader.style.opacity = '0';
-      setTimeout(() => {
-        preloader.style.display = 'none';
-      }, 500);
-    });
+const firebaseConfig = {
+  apiKey: "AIzaSyDbrxXpL6XNtV35w_s14vbz_xv3c3rBjV4",
+  authDomain: "joseline-5b910.firebaseapp.com",
+  projectId: "joseline-5b910",
+  storageBucket: "joseline-5b910.firebasestorage.app",
+  messagingSenderId: "1000887672996",
+  appId: "1:1000887672996:web:506c830b9d1f1b15950631",
+};
 
-    // Mobile Menu Toggle
-    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-    const mobileMenuClose = document.getElementById('mobile-menu-close');
-    const mobileMenu = document.getElementById('mobile-menu');
-    const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
+const app = getApps().length ? getApps()[0] : initializeApp(firebaseConfig);
+const db = getFirestore(app);
 
-    function openMobileMenu() {
-      mobileMenu.classList.add('active');
-      mobileMenuOverlay.classList.add('active');
-      document.body.style.overflow = 'hidden';
-    }
+window.addEventListener("load", function () {
+  const preloader = document.getElementById("preloader");
+  if (preloader) {
+    preloader.style.opacity = "0";
+    setTimeout(() => {
+      preloader.style.display = "none";
+    }, 500);
+  }
+});
 
-    function closeMobileMenu() {
-      mobileMenu.classList.remove('active');
-      mobileMenuOverlay.classList.remove('active');
-      document.body.style.overflow = '';
-    }
+const mobileMenuBtn = document.getElementById("mobile-menu-btn");
+const mobileMenuClose = document.getElementById("mobile-menu-close");
+const mobileMenu = document.getElementById("mobile-menu");
+const mobileMenuOverlay = document.getElementById("mobile-menu-overlay");
 
-    mobileMenuBtn.addEventListener('click', openMobileMenu);
-    mobileMenuClose.addEventListener('click', closeMobileMenu);
-    mobileMenuOverlay.addEventListener('click', closeMobileMenu);
+function openMobileMenu() {
+  if (!mobileMenu) return;
+  mobileMenu.classList.add("active");
+  if (mobileMenuOverlay) mobileMenuOverlay.classList.add("active");
+  document.body.style.overflow = "hidden";
+}
 
-    // Close mobile menu on link click
-    mobileMenu.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', closeMobileMenu);
-    });
+function closeMobileMenu() {
+  if (!mobileMenu) return;
+  mobileMenu.classList.remove("active");
+  if (mobileMenuOverlay) mobileMenuOverlay.classList.remove("active");
+  document.body.style.overflow = "";
+}
 
-    // Navbar Scroll Effect
-    const navbar = document.getElementById('navbar');
-    const navBg = document.getElementById('nav-bg');
+if (mobileMenuBtn) mobileMenuBtn.addEventListener("click", openMobileMenu);
+if (mobileMenuClose) mobileMenuClose.addEventListener("click", closeMobileMenu);
+if (mobileMenuOverlay)
+  mobileMenuOverlay.addEventListener("click", closeMobileMenu);
 
-    window.addEventListener('scroll', function () {
-      if (window.scrollY > 50) {
-        navBg.style.opacity = '1';
-        navbar.classList.add('shadow-lg');
-      } else {
-        navBg.style.opacity = '0';
-        navbar.classList.remove('shadow-lg');
+if (mobileMenu) {
+  mobileMenu.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", closeMobileMenu);
+  });
+}
+
+const navbar = document.getElementById("navbar");
+const navBg = document.getElementById("nav-bg");
+
+window.addEventListener("scroll", function () {
+  if (!navbar || !navBg) return;
+  if (window.scrollY > 50) {
+    navBg.style.opacity = "1";
+    navbar.classList.add("shadow-lg");
+  } else {
+    navBg.style.opacity = "0";
+    navbar.classList.remove("shadow-lg");
+  }
+});
+
+const revealElements = document.querySelectorAll(
+  ".reveal, .reveal-left, .reveal-right, .reveal-scale",
+);
+
+const revealObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("active");
       }
     });
+  },
+  {
+    threshold: 0.1,
+    rootMargin: "0px 0px -50px 0px",
+  },
+);
 
-    // Scroll Reveal Animation
-    const revealElements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale');
+revealElements.forEach((el) => revealObserver.observe(el));
 
-    const revealObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('active');
-        }
-      });
-    }, {
-      threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
-    });
+const counters = document.querySelectorAll(".counter");
+const counterSpeed = 200;
 
-    revealElements.forEach(el => revealObserver.observe(el));
-
-    // Counter Animation
-    const counters = document.querySelectorAll('.counter');
-    const counterSpeed = 200; // Lower is faster
-
-    const counterObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const counter = entry.target;
-          const target = parseInt(counter.getAttribute('data-target'));
-          const updateCount = () => {
-            const count = parseInt(counter.innerText);
-            const increment = target / counterSpeed;
-            if (count < target) {
-              counter.innerText = Math.ceil(count + increment);
-              setTimeout(updateCount, 1);
-            } else {
-              counter.innerText = target;
-            }
-          };
-          updateCount();
-          counterObserver.unobserve(counter);
-        }
-      });
-    }, {
-      threshold: 0.5
-    });
-
-    counters.forEach(counter => counterObserver.observe(counter));
-
-    // Job Filter
-    const filterBtns = document.querySelectorAll('.job-filter-btn');
-    const jobCards = document.querySelectorAll('.job-card');
-
-    filterBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        // Update active button style
-        filterBtns.forEach(b => {
-          b.classList.remove('active', 'bg-primary-600', 'text-white');
-          b.classList.add('bg-slate-100', 'text-slate-600');
-        });
-        btn.classList.add('active', 'bg-primary-600', 'text-white');
-        btn.classList.remove('bg-slate-100', 'text-slate-600');
-
-        // Filter cards
-        const filter = btn.getAttribute('data-filter');
-        jobCards.forEach(card => {
-          const category = card.getAttribute('data-category');
-          if (filter === 'all' || category === filter) {
-            card.style.display = 'block';
-            setTimeout(() => card.style.opacity = '1', 10);
+const counterObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        const counter = entry.target;
+        const target = parseInt(counter.getAttribute("data-target"));
+        const updateCount = () => {
+          const count = parseInt(counter.innerText);
+          const increment = target / counterSpeed;
+          if (count < target) {
+            counter.innerText = Math.ceil(count + increment);
+            setTimeout(updateCount, 1);
           } else {
-            card.style.opacity = '0';
-            setTimeout(() => card.style.display = 'none', 300);
+            counter.innerText = target;
           }
-        });
-      });
-    });
-
-    // Initialize filter button styles
-    filterBtns.forEach(btn => {
-      if (btn.classList.contains('active')) {
-        btn.classList.add('bg-primary-600', 'text-white');
-      } else {
-        btn.classList.add('bg-slate-100', 'text-slate-600');
+        };
+        updateCount();
+        counterObserver.unobserve(counter);
       }
     });
+  },
+  {
+    threshold: 0.5,
+  },
+);
 
-    // Form Submission Handler
-    const inquiryForm = document.getElementById('inquiry-form');
-    const formStatus = document.getElementById('form-status');
+counters.forEach((counter) => counterObserver.observe(counter));
 
-    inquiryForm.addEventListener('submit', function (e) {
-      e.preventDefault();
+const filterBtns = document.querySelectorAll(".job-filter-btn");
+const jobCards = document.querySelectorAll(".job-card");
 
-      // Simulate form submission
-      const submitBtn = inquiryForm.querySelector('button[type="submit"]');
-      const originalText = submitBtn.innerHTML;
-      submitBtn.innerHTML = '<svg class="animate-spin h-5 w-5 mx-auto" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>';
-      submitBtn.disabled = true;
-
-      setTimeout(() => {
-        // Show success message
-        formStatus.classList.remove('hidden', 'text-red-500');
-        formStatus.classList.add('text-green-600');
-        formStatus.textContent = 'Thank you! Your inquiry has been submitted successfully. We will contact you soon.';
-
-        // Reset form
-        inquiryForm.reset();
-
-        // Reset button
-        submitBtn.innerHTML = originalText;
-        submitBtn.disabled = false;
-
-        // Hide status after 5 seconds
-        setTimeout(() => {
-          formStatus.classList.add('hidden');
-        }, 5000);
-      }, 1500);
+filterBtns.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    filterBtns.forEach((b) => {
+      b.classList.remove("active", "bg-primary-600", "text-white");
+      b.classList.add("bg-slate-100", "text-slate-600");
     });
+    btn.classList.add("active", "bg-primary-600", "text-white");
+    btn.classList.remove("bg-slate-100", "text-slate-600");
 
-    // Job Apply Button Handler
-    const applyBtns = document.querySelectorAll('.job-apply-btn');
-    applyBtns.forEach(btn => {
-      btn.addEventListener('click', function () {
-        const card = this.closest('.job-card');
-        const jobTitle = card.querySelector('h3').textContent;
+    const filter = btn.getAttribute("data-filter");
+    jobCards.forEach((card) => {
+      const category = card.getAttribute("data-category");
+      if (filter === "all" || category === filter) {
+        card.style.display = "block";
+        setTimeout(() => (card.style.opacity = "1"), 10);
+      } else {
+        card.style.opacity = "0";
+        setTimeout(() => (card.style.display = "none"), 300);
+      }
+    });
+  });
+});
 
-        // Scroll to contact form
-        document.getElementById('contact').scrollIntoView({
-          behavior: 'smooth'
-        });
+filterBtns.forEach((btn) => {
+  if (btn.classList.contains("active")) {
+    btn.classList.add("bg-primary-600", "text-white");
+  } else {
+    btn.classList.add("bg-slate-100", "text-slate-600");
+  }
+});
 
+document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+  anchor.addEventListener("click", function (e) {
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute("href"));
+    if (target) {
+      target.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
+  });
+});
 
-        setTimeout(() => {
-          const positionSelect = document.getElementById('position');
-          for (let i = 0; i < positionSelect.options.length; i++) {
-            if (positionSelect.options[i].text.includes(jobTitle.split(' ')[0])) {
-              positionSelect.value = positionSelect.options[i].value;
-              break;
-            }
+const applyBtns = document.querySelectorAll(".job-apply-btn");
+applyBtns.forEach((btn) => {
+  btn.addEventListener("click", function () {
+    const card = this.closest(".job-card");
+    if (!card) return;
+    const jobTitle = card.querySelector("h3")?.textContent || "";
+
+    document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
+
+    setTimeout(() => {
+      const positionSelect = document.getElementById("position");
+      if (positionSelect) {
+        for (let i = 0; i < positionSelect.options.length; i++) {
+          if (positionSelect.options[i].text.includes(jobTitle.split(" ")[0])) {
+            positionSelect.value = positionSelect.options[i].value;
+            break;
           }
-        }, 800);
-      });
-    });
-
-    // Smooth scroll for navigation links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-          target.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
-          });
         }
+      }
+    }, 800);
+  });
+});
+
+const inquiryForm = document.getElementById("inquiry-form");
+const formStatus = document.getElementById("form-status");
+
+if (inquiryForm) {
+  inquiryForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const firstName = inquiryForm.querySelector("#firstName")?.value.trim();
+    const lastName = inquiryForm.querySelector("#lastName")?.value.trim();
+    const email = inquiryForm.querySelector("#email")?.value.trim();
+    const phone = inquiryForm.querySelector("#phone")?.value.trim();
+    const position = inquiryForm.querySelector("#position")?.value;
+    const message = inquiryForm.querySelector("#message")?.value.trim();
+
+    if (!firstName || !email || !message) {
+      showStatus(
+        "Please fill in all required fields (First Name, Email, Message).",
+        "error",
+      );
+      return;
+    }
+
+    const submitBtn = inquiryForm.querySelector('button[type="submit"]');
+    const originalText = submitBtn.innerHTML;
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = `
+      <svg class="animate-spin w-5 h-5" fill="none" viewBox="0 0 24 24">
+        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z"></path>
+      </svg>
+      <span>Submitting...</span>
+    `;
+
+    try {
+      await addDoc(collection(db, "inquiries"), {
+        firstName,
+        lastName,
+        email,
+        phone,
+        position,
+        message,
+        status: "new",
+        createdAt: serverTimestamp(),
       });
-    });
+
+      showStatus(
+        "✅ Your inquiry has been submitted! We will contact you soon.",
+        "success",
+      );
+      inquiryForm.reset();
+    } catch (err) {
+      console.error("Firestore submission error:", err);
+      showStatus(
+        "❌ Submission failed. Please try again or email us directly.",
+        "error",
+      );
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = originalText;
+    }
+  });
+}
+
+function showStatus(msg, type) {
+  if (!formStatus) return;
+  formStatus.textContent = msg;
+  formStatus.className = `text-center mt-4 text-sm ${
+    type === "success" ? "text-green-600" : "text-red-600"
+  }`;
+  formStatus.classList.remove("hidden");
+  setTimeout(() => formStatus.classList.add("hidden"), 6000);
+}
+
