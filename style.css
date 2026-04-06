@@ -23,19 +23,26 @@
     color: white;
   }
 
-  /* Custom Scrollbar */
-  ::-webkit-scrollbar {
-    width: 12px;
-  }
+  
+::-webkit-scrollbar {
+  width: 8px; 
+}
 
-  ::-webkit-scrollbar-track {
-    background: #f1ebdd;
-  }
 
-  ::-webkit-scrollbar-thumb {
-    background: linear-gradient(180deg, #D4AF37, #8F7118);
-    border-radius: 6px;
-  }
+::-webkit-scrollbar-track {
+  background: #f4f4f4; 
+}
+
+
+::-webkit-scrollbar-thumb {
+  background: #D4AF37; 
+  border-radius: 10px; 
+}
+
+
+::-webkit-scrollbar-thumb:hover {
+  background: #C5A028; 
+}
 
   .text-gradient {
     background: linear-gradient(135deg, #C9A227 0%, #E4C46A 50%, #8F7118 100%);
@@ -303,26 +310,51 @@
     width: 100%;
   }
 
-  /* Job Card */
-  .job-card {
-    position: relative;
-    overflow: hidden;
-  }
+  .job-filter-btn {
+  background: transparent;
+  color: #1e293b;
+  border: 1.5px solid #1e293b;
+  transition: all 0.25s ease;
+}
 
-  .job-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 4px;
-    height: 0;
-    background: linear-gradient(180deg, #D4AF37, #B38F1F);
-    transition: height 0.4s ease;
-  }
+.job-filter-btn:hover {
+  background: #0f172a;
+  color: #ffffff;
+  border-color: #0f172a;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
 
-  .job-card:hover::before {
-    height: 100%;
-  }
+.job-filter-btn.active {
+  background: #0f172a;
+  color: #ffffff;
+  border-color: #0f172a;
+}
+
+/* Apply Now buttons */
+.job-apply-btn {
+  background: #0f172a !important;
+  border: 1.5px solid #0f172a;
+  transition: all 0.25s ease;
+}
+
+.job-apply-btn:hover {
+  background: #000000 !important;
+  border-color: #000000;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+/* Job cards */
+.job-card {
+  position: relative;
+  border: 1.5px solid #e2e8f0 !important;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.job-card:hover {
+  border-color: #d4a017 !important;
+  box-shadow: 0 4px 16px rgba(212, 160, 23, 0.12);
+}
+
 
   /* Badge */
   .badge {

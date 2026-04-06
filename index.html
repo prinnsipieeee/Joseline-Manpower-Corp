@@ -142,7 +142,9 @@
   <header id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex items-center justify-between h-20">
-        <a href="#home" class="flex items-center space-x-3 group">
+
+        <!-- Logo -->
+        <a href="#home" class="flex items-center space-x-3 group shrink-0">
           <div class="flex items-center justify-center transform group-hover:scale-105 transition-transform">
             <img src="images/Logo3.png" alt="Joseline International Manpower Corporation Logo"
               class="h-14 w-auto object-contain">
@@ -152,68 +154,64 @@
             <p class="text-primary-300 text-xs tracking-wider">INTERNATIONAL MANPOWER CORPORATION</p>
           </div>
         </a>
-        <nav class="hidden lg:flex items-center space-x-8">
-          <a href="#home" class="nav-link text-white hover:text-accent-400 font-medium">Home</a>
-          <a href="#about" class="nav-link text-white hover:text-accent-400 font-medium">About</a>
-          <a href="#jobs" class="nav-link text-white hover:text-accent-400 font-medium">Job Opportunities</a>
-          <a href="#deployment" class="nav-link text-white hover:text-accent-400 font-medium">Deployment</a>
-          <a href="#contact" class="nav-link text-white hover:text-accent-400 font-medium">Contact</a>
 
-        </nav>
-        <div class="hidden lg:flex items-center space-x-4">
+        <!-- Desktop: Links + Buttons in one row -->
+        <div class="hidden lg:flex items-center space-x-6">
 
-          <div class="flex gap-4 flex-wrap">
+          <a href="#home" class="nav-link text-white hover:text-accent-400 font-medium whitespace-nowrap">Home</a>
+          <a href="#about" class="nav-link text-white hover:text-accent-400 font-medium whitespace-nowrap">About</a>
+          <a href="#jobs" class="nav-link text-white hover:text-accent-400 font-medium whitespace-nowrap">Job
+            Opportunities</a>
+          <a href="#deployment"
+            class="nav-link text-white hover:text-accent-400 font-medium whitespace-nowrap">Deployment</a>
+          <a href="#contact" class="nav-link text-white hover:text-accent-400 font-medium whitespace-nowrap">Contact</a>
 
-            <!-- Request Assistance -->
-            <a href="https://sys.yaramay.online/complaints" class="relative inline-flex items-center justify-center px-6 py-3 text-sm font-semibold rounded-full
-    text-[#FFF3B0]
-    border border-[#FCD116]/40
-    bg-white/10 backdrop-blur-md
-    transition-all duration-300 overflow-hidden group
+          <!-- Request Assistance -->
+          <a href="https://sys.yaramay.online/complaints" class="relative inline-flex items-center justify-center px-5 py-2.5 text-sm font-semibold rounded-full
+          text-[#FFF3B0]
+          border border-[#FCD116]/40
+          bg-white/10 backdrop-blur-md
+          transition-all duration-300 overflow-hidden
+          hover:bg-[#FCD116]
+          hover:text-[#2B1A00]
+          hover:border-[#FFD700]
+          hover:shadow-[0_8px_25px_rgba(252,209,22,0.35)]">
+            <span class="relative z-10 tracking-wide">Request Assistance</span>
+          </a>
 
-    hover:bg-[#FCD116]
-    hover:text-[#2B1A00]
-    hover:border-[#FFD700]
-    hover:shadow-[0_8px_25px_rgba(252,209,22,0.35)]">
+          <!-- Apply Now -->
+          <a href="#jobs" class="relative inline-flex items-center justify-center px-6 py-2.5 text-sm font-bold rounded-xl
+          text-[#2B1A00]
+          bg-gradient-to-r from-[#CFAF3A] to-[#E6C65B]
+          shadow-md
+          transition-all duration-300
+          hover:brightness-110 hover:scale-105">
+            <span class="tracking-wide">Apply Now</span>
+          </a>
 
-              <span class="relative z-10 tracking-wide">Request Assistance</span>
-            </a>
-
-
-            <!-- Apply Now (MATCH View Jobs GOLD) -->
-            <a href="#jobs" class="relative inline-flex items-center justify-center px-7 py-3.5 text-sm font-bold rounded-xl
-    text-[#2B1A00]
-    bg-gradient-to-r from-[#CFAF3A] to-[#E6C65B]
-    shadow-md
-    transition-all duration-300
-
-    hover:brightness-110 hover:scale-105">
-
-              <span class="tracking-wide">Apply Now</span>
-            </a>
-
-          </div>
+          <!-- Admin -->
+          <a href="admin-dashboard.html" class="text-white font-medium whitespace-nowrap border border-white rounded-md px-3 py-1.5 
+          hover:bg-white hover:text-[#0f1b2d] transition-all duration-300">Admin</a>
 
           <!-- Mobile Menu Button -->
           <button id="mobile-menu-btn" class="lg:hidden relative inline-flex items-center justify-center p-3 rounded-2xl
-  text-[#FFF3B0]
-  bg-white/10 backdrop-blur-xl
-  border border-[#FCD116]/25
-  shadow-[0_0_20px_rgba(252,209,22,0.10)]
-  hover:text-white hover:border-[#FFD700]/60
-  hover:bg-gradient-to-br hover:from-[#A67C00]/25 hover:via-[#FCD116]/10 hover:to-[#A67C00]/25
-  hover:shadow-[0_0_24px_rgba(252,209,22,0.22)]
-  transition-all duration-300" aria-label="Open menu">
-
+        text-[#FFF3B0]
+        bg-white/10 backdrop-blur-xl
+        border border-[#FCD116]/25
+        shadow-[0_0_20px_rgba(252,209,22,0.10)]
+        hover:text-white hover:border-[#FFD700]/60
+        hover:bg-gradient-to-br hover:from-[#A67C00]/25 hover:via-[#FCD116]/10 hover:to-[#A67C00]/25
+        hover:shadow-[0_0_24px_rgba(252,209,22,0.22)]
+        transition-all duration-300" aria-label="Open menu">
             <span class="absolute inset-0 rounded-2xl bg-gradient-to-b from-white/10 to-transparent opacity-70"></span>
-
-            <svg class="relative z-10 w-6 h-6 transition-transform duration-300 group-hover:scale-110" fill="none"
-              stroke="currentColor" viewBox="0 0 24 24">
+            <svg class="relative z-10 w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
             </svg>
           </button>
+
         </div>
       </div>
+
       <div id="nav-bg"
         class="absolute inset-0 bg-primary-950/95 backdrop-blur-md opacity-0 transition-opacity duration-300 -z-10">
       </div>
@@ -276,8 +274,8 @@
           </p>
 
           <div class="reveal stagger-3 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-12">
-            <a href="#jobs" class="btn-accent text-center px-8 py-4 text-lg">View Jobs</a>
-            <a href="#contact" class="btn-outline text-center px-8 py-4 text-lg">Contact Us</a>
+            <a href="#jobs" class="btn-accent text-center px-8 py-4 text-lg text-black">View Jobs</a>
+            <a href="#contact" class="btn-outline text-center px-8 py-4 text-lg text-white">Contact Us</a>
           </div>
 
           <div class="reveal stagger-4 flex flex-wrap justify-center lg:justify-start gap-6">
@@ -1053,6 +1051,7 @@
         </p>
       </div>
 
+      <!-- Filter Buttons -->
       <div class="reveal stagger-2 flex flex-wrap justify-center gap-2 mb-12">
         <button class="job-filter-btn active px-6 py-2 rounded-full text-sm font-medium transition-all"
           data-filter="all">All Positions</button>
@@ -1066,6 +1065,7 @@
           data-filter="professional">Professional</button>
       </div>
 
+      <!-- Job Cards Grid -->
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6" id="jobs-grid">
         <!-- Job 1 -->
         <div class="reveal job-card card-hover bg-white rounded-2xl p-6 border border-slate-200 shadow-sm"
@@ -1082,8 +1082,7 @@
             <span class="text-xs bg-slate-100 text-slate-600 px-3 py-1 rounded-full">Saudi Arabia</span>
             <span class="text-xs bg-slate-100 text-slate-600 px-3 py-1 rounded-full">Full-time</span>
           </div>
-          <button
-            class="job-apply-btn w-full py-3 bg-primary-600 hover:bg-primary-700 text-white rounded-lg font-medium transition-colors">Apply
+          <button class="job-apply-btn w-full py-3 text-white rounded-lg font-medium transition-all">Apply
             Now</button>
         </div>
 
@@ -1102,8 +1101,7 @@
             <span class="text-xs bg-slate-100 text-slate-600 px-3 py-1 rounded-full">Saudi Arabia</span>
             <span class="text-xs bg-slate-100 text-slate-600 px-3 py-1 rounded-full">Full-time</span>
           </div>
-          <button
-            class="job-apply-btn w-full py-3 bg-primary-600 hover:bg-primary-700 text-white rounded-lg font-medium transition-colors">Apply
+          <button class="job-apply-btn w-full py-3 text-white rounded-lg font-medium transition-all">Apply
             Now</button>
         </div>
 
@@ -1123,8 +1121,7 @@
             <span class="text-xs bg-slate-100 text-slate-600 px-3 py-1 rounded-full">Saudi Arabia</span>
             <span class="text-xs bg-slate-100 text-slate-600 px-3 py-1 rounded-full">Full-time</span>
           </div>
-          <button
-            class="job-apply-btn w-full py-3 bg-primary-600 hover:bg-primary-700 text-white rounded-lg font-medium transition-colors">Apply
+          <button class="job-apply-btn w-full py-3 text-white rounded-lg font-medium transition-all">Apply
             Now</button>
         </div>
 
@@ -1132,8 +1129,9 @@
         <div class="reveal stagger-3 job-card card-hover bg-white rounded-2xl p-6 border border-slate-200 shadow-sm"
           data-category="it">
           <div class="flex items-start justify-between mb-4">
-            <img src="https://images.unsplash.com/photo-1555747590-6d40108fae52?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8SVQlMjBTVVBQT1JUJTIwVEVDSE5JQ0lBTiUyMFBJTk9ZfGVufDB8fDB8fHww" alt="IT support specialist"
-              class="w-12 h-12 rounded-xl object-cover">
+            <img
+              src="https://images.unsplash.com/photo-1555747590-6d40108fae52?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8SVQlMjBTVVBQT1JUJTIwVEVDSE5JQ0lBTiUyMFBJTk9ZfGVufDB8fDB8fHww"
+              alt="IT support specialist" class="w-12 h-12 rounded-xl object-cover">
             <span class="badge badge-primary">IT</span>
           </div>
           <h3 class="font-display text-xl font-bold text-primary-950 mb-2">IT Support Technician</h3>
@@ -1143,8 +1141,7 @@
             <span class="text-xs bg-slate-100 text-slate-600 px-3 py-1 rounded-full">Timor-Leste</span>
             <span class="text-xs bg-slate-100 text-slate-600 px-3 py-1 rounded-full">Full-time</span>
           </div>
-          <button
-            class="job-apply-btn w-full py-3 bg-primary-600 hover:bg-primary-700 text-white rounded-lg font-medium transition-colors">Apply
+          <button class="job-apply-btn w-full py-3 text-white rounded-lg font-medium transition-all">Apply
             Now</button>
         </div>
 
@@ -1164,8 +1161,7 @@
             <span class="text-xs bg-slate-100 text-slate-600 px-3 py-1 rounded-full">Timor-Leste</span>
             <span class="text-xs bg-slate-100 text-slate-600 px-3 py-1 rounded-full">Full-time</span>
           </div>
-          <button
-            class="job-apply-btn w-full py-3 bg-primary-600 hover:bg-primary-700 text-white rounded-lg font-medium transition-colors">Apply
+          <button class="job-apply-btn w-full py-3 text-white rounded-lg font-medium transition-all">Apply
             Now</button>
         </div>
 
@@ -1185,15 +1181,17 @@
             <span class="text-xs bg-slate-100 text-slate-600 px-3 py-1 rounded-full">Greece</span>
             <span class="text-xs bg-slate-100 text-slate-600 px-3 py-1 rounded-full">Full-time</span>
           </div>
-          <button
-            class="job-apply-btn w-full py-3 bg-primary-600 hover:bg-primary-700 text-white rounded-lg font-medium transition-colors">Apply
+          <button class="job-apply-btn w-full py-3 text-white rounded-lg font-medium transition-all">Apply
             Now</button>
         </div>
       </div>
 
       <div class="reveal text-center mt-12">
         <p class="text-slate-600 mb-4">Don't see a position that matches your skills?</p>
-        <a href="#contact" class="btn-outline-dark inline-block">Send Your Resume</a>
+        <a href="#contact"
+          class="btn-outline-dark inline-block hover:bg-black hover:text-white hover:border-black transition-all duration-300">
+          Send Your Resume
+        </a>
       </div>
     </div>
   </section>
@@ -2032,9 +2030,7 @@
             <button type="submit"
               class="w-full bg-primary-600 hover:bg-primary-700 text-white font-semibold py-3 px-6 rounded-lg transition duration-300 shadow-md hover:shadow-lg flex items-center justify-center space-x-2">
               <span>Send Inquiry</span>
-              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-              </svg>
+              
             </button>
 
             <p id="form-status" class="text-center mt-4 text-sm hidden"></p>
@@ -2253,7 +2249,7 @@
             <li>
               <a href="#" class="flex items-center text-primary-200 hover:text-white transition-colors text-sm">
 
-                DMW License No. 2019-002
+                DMW-009-LB-03072023-R
               </a>
             </li>
 
@@ -2308,7 +2304,7 @@
       </div>
     </div>
   </footer>
- <script type="module" src="main.js"></script>
+  <script type="module" src="main.js"></script>
 </body>
 
 </html>
