@@ -269,3 +269,28 @@ function showStatus(msg, type) {
   setTimeout(() => formStatus.classList.add("hidden"), 6000);
 }
 
+// main.js
+document.addEventListener("DOMContentLoaded", function() {
+    // I-verify kung gumagana: console.log("Swiper loading...");
+    
+    const swiper = new Swiper(".deploymentCarousel", {
+        slidesPerView: 1,
+        centeredSlides: true,
+        speed: 800,
+        navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+        },
+        pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+        },
+        breakpoints: {
+            768: { slidesPerView: 1.5 },
+            1024: { slidesPerView: 2 },
+        },
+        observer: true,
+        observeParents: true,
+        watchOverflow: true
+    });
+});
